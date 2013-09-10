@@ -8,7 +8,7 @@
  *
  * Minimum requirements: PHP 5.3.x, cURL.
  *
- * @version 1.0
+ * @version 1.0-beta1
  * @author Jeff Geerling (geerlingguy).
  */
 
