@@ -1,0 +1,14 @@
+{
+    "name": "geerlingguy/request",
+    "description": "A simple PHP HTTP request class.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jeff Geerling",
+            "email": "jeff@jeffgeerling.com"
+        }
+    ],
+    "autoload": {
+        "classmap": [ "Request.php" ]
+    }
+}
