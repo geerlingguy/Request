@@ -32,7 +32,10 @@ class Request {
   private $ssl = FALSE;
 
   // Request type.
-  public $requestType;
+  private $requestType;
+  // If the $requestType is POST, you can also add post fields.
+  private $postFields;
+
   // Userpwd value used for basic HTTP authentication.
   private $userpwd;
   // Latency, in ms.
@@ -122,22 +125,63 @@ class Request {
   }
 
   /**
-   * Getters.
+   * Set the POST fields (only used if $this->requestType is 'POST').
    *
-   * @todo - Document each getter.
+   * @param array $fields
+   *   An array of fields that will be sent with the POST request.
+   */
+  public function setPostFields($fields = array()) {
+    $this->postFields = $fields;
+  }
+
+  /**
+   * Get the response body.
+   *
+   * @return string
+   *   Response body.
    */
   public function getResponse() {
     return $this->responseBody;
   }
+
+  /**
+   * Get the response header.
+   *
+   * @return string
+   *   Response header.
+   */
   public function getHeader() {
     return $this->responseHeader;
   }
+
+  /**
+   * Get the HTTP status code for the response.
+   *
+   * @return int
+   *   HTTP status code.
+   *
+   * @see http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
+   */
   public function getHttpCode() {
     return $this->httpCode;
   }
+
+  /**
+   * Get the latency (the total time spent waiting) for the response.
+   *
+   * @return int
+   *   Latency, in milliseconds.
+   */
   public function getLatency() {
     return $this->latency;
   }
+
+  /**
+   * Get any cURL errors generated during the execution of the request.
+   *
+   * @return string
+   *   An error message, if any error was given. Otherwise, empty.
+   */
   public function getError() {
     return $this->error;
   }
@@ -166,10 +210,8 @@ class Request {
   /**
    * Check a given address with cURL.
    *
-   * After this method completes, the following variables will be populated:
-   *   - $this->response
-   *   - $this->httpCode
-   *   - $this->latency
+   * After this method is completed, the response body, headers, latency, etc.
+   * will be populated, and can be accessed with the appropriate methods.
    */
   public function execute() {
     // Set a default latency value.
@@ -189,6 +231,10 @@ class Request {
     // Send a custom request if set (instead of standard GET).
     if (isset($this->requestType)) {
       curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $this->requestType);
+      // If POST fields are given, and this is a POST request, add fields.
+      if ($this->requestType == 'POST' && isset($this->postFields)) {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $this->postFields);
+      }
     }
     // Don't print the response; return it from curl_exec().
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);

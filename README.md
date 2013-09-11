@@ -61,6 +61,9 @@ $request->userAgent = 'User agent string here.';
 $request->connectTimeout = 5;
 // Set the timeout (default is 15 seconds).
 $request->timeout = 10;
+// Send some fields as a POST request.
+$request->setRequestType('POST');
+$request->setPostFields($field_array);
 ```
 
 See the Request class variable definitions and methods for more
