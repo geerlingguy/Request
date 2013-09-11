@@ -51,8 +51,10 @@ Other options include enabling or disabling SSL, using cookies, and setting cURL
 timeout values:
 
 ```php
+// Enable Cookies.
+$request->enableCookies($cookie_file_path);
 // Enable SSL/TLS.
-$request->enableSSL = TRUE;
+$request->enableSSL();
 // Set the user agent string.
 $request->userAgent = 'User agent string here.';
 // Set the initial connection timeout (default is 10 seconds).

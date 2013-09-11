@@ -20,14 +20,16 @@ class Request {
   private $address;
 
   // Variables used for the request.
-  public $enableSSL = FALSE;
   public $userAgent = 'Mozilla/5.0 (compatible; PHP Request library)';
   public $connectTimeout = 10;
   public $timeout = 15;
 
-  // If you enable cookies, be sure to set a path to the cookies TXT file.
-  private $enableCookies = FALSE;
+  // Variables used for cookie support.
+  private $cookiesEnabled = FALSE;
   private $cookiePath;
+
+  // Enable or disable SSL/TLS.
+  private $ssl = FALSE;
 
   // Request type.
   public $requestType;
@@ -83,7 +85,7 @@ class Request {
    *   Absolute path to a txt file where cookie information will be stored.
    */
   public function enableCookies($cookie_path) {
-    $this->enableCookies = TRUE;
+    $this->cookiesEnabled = TRUE;
     $this->cookiePath = $cookie_path;
   }
 
@@ -91,8 +93,22 @@ class Request {
    * Disable cookies.
    */
   public function disableCookies() {
-    $this->enableCookies = FALSE;
+    $this->cookiesEnabled = FALSE;
     $this->cookiePath = '';
+  }
+
+  /**
+   * Enable SSL.
+   */
+  public function enableSSL() {
+    $this->ssl = TRUE;
+  }
+
+  /**
+   * Disable SSL.
+   */
+  public function disableSSL() {
+    $this->ssl = FALSE;
   }
 
   /**
@@ -166,7 +182,7 @@ class Request {
       curl_setopt($ch, CURLOPT_USERPWD, $this->userpwd);
     }
     // If cookies are enabled, use them.
-    if ($this->enableCookies) {
+    if ($this->cookiesEnabled) {
       curl_setopt($ch, CURLOPT_COOKIEJAR, $this->cookiePath);
       curl_setopt($ch, CURLOPT_COOKIEFILE, $this->cookiePath);
     }
@@ -183,7 +199,7 @@ class Request {
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
     curl_setopt($ch, CURLOPT_MAXREDIRS, 5);
     // SSL support.
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->enableSSL);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, $this->ssl);
     // Set a custom UA string so people can identify our requests.
     curl_setopt($ch, CURLOPT_USERAGENT, $this->userAgent);
     // Output the header in the response.
