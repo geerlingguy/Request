@@ -207,7 +207,7 @@ class Request {
    *   TRUE if $content was found in the response, FALSE otherwise.
    */
   public function checkResponseForContent($content = '') {
-    if ($this->httpCode == 200 && !empty($this->response)) {
+    if ($this->httpCode == 200 && !empty($this->responseBody)) {
       if (strpos($this->responseBody, $content) !== FALSE) {
         return TRUE;
       }
