@@ -6,13 +6,21 @@
  * Usage examples can be found in the included README file, and all methods
  * should have adequate documentation to get you started.
  *
+ * Quick Start:
+ * @code
+ *   include 'path/to/Request/JJG/Request.php';
+ *   use \JJG\Request as Request;
+ *   $request = new Request('http://www.example.com/');
+ *   $request->execute();
+ * @endcode
+ *
  * Minimum requirements: PHP 5.3.x, cURL.
  *
  * @version 1.0-beta1
  * @author Jeff Geerling (geerlingguy).
  */
 
-namespace JJG\Request;
+namespace JJG;
 
 class Request {
   // You can set the address when creating the Request object, or using the
