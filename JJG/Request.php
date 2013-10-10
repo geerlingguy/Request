@@ -225,7 +225,7 @@ class Request {
     // Set a default latency value.
     $latency = 0;
 
-    // Set up cURL options
+    // Set up cURL options.
     $ch = curl_init();
     // If there are basic authentication credentials, use them.
     if (isset($this->userpwd)) {
