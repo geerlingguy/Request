@@ -9,6 +9,6 @@
         }
     ],
     "autoload": {
-        "classmap": [ "Request.php" ]
+        "classmap": [ "JJG/Request.php" ]
     }
 }
