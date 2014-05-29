@@ -22,7 +22,7 @@ Other parameters you can retrieve after executing a request include:
 
 ```php
 // The full headers from the response.
-$request->getHeaders();
+$request->getHeader();
 // The latency for this response, in ms.
 $request->getLatency();
 // The HTTP status code (e.g. 200 for 200 OK).
