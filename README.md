@@ -1,4 +1,4 @@
-<img src="http://github.com/geerlingguy/Request/raw/1.x/Resources/Request-Logo.png" alt="Request for PHP Logo" />
+<img src="https://raw.githubusercontent.com/geerlingguy/Request/1.x/Resources/Request-Logo.png" alt="Request for PHP Logo" />
 
 # Request
 
