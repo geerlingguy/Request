@@ -123,6 +123,46 @@ class Request {
   }
 
   /**
+   * Set timeout.
+   *
+   * @param int $timeout
+   *   Timeout value in seconds.
+   */
+  public function setTimeout($timeout = 15) {
+    $this->timeout = $timeout;
+  }
+
+  /**
+   * Get timeout.
+   *
+   * @return int
+   *   Timeout value in seconds.
+   */
+  public function getTimeout() {
+    return $this->timeout;
+  }
+
+  /**
+   * Set connect timeout.
+   *
+   * @param int $connect_timeout
+   *   Timeout value in seconds.
+   */
+  public function setConnectTimeout($connectTimeout = 10) {
+    $this->connectTimeout = $connectTimeout;
+  }
+
+  /**
+   * Get connect timeout.
+   *
+   * @return int
+   *   Timeout value in seconds.
+   */
+  public function getConnectTimeout() {
+    return $this->connectTimeout;
+  }
+
+  /**
    * Set a request type (by default, cURL will send a GET request).
    *
    * @param string $type
