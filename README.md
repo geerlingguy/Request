@@ -86,4 +86,4 @@ Some other recommended HTTP libraries for PHP include:
 
 ## License
 
-Imap is licensed under the MIT (Expat) license. See included LICENSE.md.
+Request is licensed under the MIT (Expat) license. See included LICENSE.md.
